@@ -17,7 +17,8 @@ export default function StartGame() {
         const chosenNumber = parseInt(enteredNumber)
         if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
             // show alert
-            Alert.alert('Invalid number!', 'Number has to be a number 1 and 99', [{text: 'Okay', style: 'destructive', onPress: resetInput}])
+            Alert.alert('Invalid number!', 'Number has to be a number 1 and 99', [{ text: 'Okay', style: 'destructive', onPress: resetInput }])
+            
             return
         }
         console.log('valid number')
