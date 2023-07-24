@@ -1,7 +1,10 @@
-import { TextInput, View, StyleSheet, Alert } from "react-native"
-import PrimaryButton from "../components/PrimaryButton"
+import { TextInput, View, StyleSheet, Alert,Text } from "react-native"
+import PrimaryButton from "../components/ui/PrimaryButton"
 import { useState } from "react"
 import { Colors } from '../constants/colors'
+import Title from "../components/ui/Title"
+import Card from "../components/ui/Card"
+import InstructionText from "../components/ui/InstructionText"
 
 export default function StartGame({onPickedNumber}) {
     const [enteredNumber, setEnteredNumber] = useState('')
@@ -14,20 +17,11 @@ export default function StartGame({onPickedNumber}) {
         setEnteredNumber('')
     }
 
-    const generateRandomBetween = (min, max, exclude) => {
-        const rnNum = Math.floor(Math.random() * (max - min)) + min
-        if (rnNum === exclude) {
-            return generateRandomBetween(min, max, exclude)
-        } else {
-            return rnNum 
-        }
-    }
-
     const confirmInput = () => {
         const chosenNumber = parseInt(enteredNumber)
         if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
             // show alert
-            Alert.alert('Invalid number!', 'Number has to be a number 1 and 99', [{ text: 'Okay', style: 'destructive', onPress: resetInput }])
+            Alert.alert('Invalid number!', 'Number has to be a number 1 and 99', [{ text: 'Okay', style: 'cancel', onPress: resetInput }])
             
             return
         }
@@ -36,8 +30,12 @@ export default function StartGame({onPickedNumber}) {
     }
 
 
-  return (
-      <View style={styles.inputContainer}>
+    return (
+        <View style={styles.rootContaier}>
+          <Title>Guess my number</Title>
+            
+        <Card>
+            <InstructionText>Enter a Number</InstructionText>
           <View style={{alignItems: 'center'}}>
               <TextInput
                   style={styles.numberInput}
@@ -50,24 +48,18 @@ export default function StartGame({onPickedNumber}) {
           <View style={styles.buttonsContainer}>  
               <View style={styles.buttonContainer}><PrimaryButton onPress={confirmInput}>Confirm</PrimaryButton></View>
                <View style={styles.buttonContainer}><PrimaryButton onPress={resetInput}>Reset</PrimaryButton></View>
-          </View>
+        </View>
+          
+    </Card>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-    inputContainer: { 
-        // alignItems: 'center',
-        padding: 16,
-        marginTop: 100,
-        marginHorizontal: 24,
-        backgroundColor: Colors.primary800,
-        borderRadius: 8,
-        elevation: 4,
-        shadowColor: 'black',
-        shadowOffset: { width: 0, height: 2 },
-        shadowRadius: 6,
-        shadowOpacity: 0.25
+    rootContaier: {
+        flex: 1,
+        marginTop: 80,
+        alignItems: 'center'
     },
     numberInput: {
         height: 50,

@@ -1,25 +1,39 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, ImageBackground, SafeAreaView } from 'react-native';
 import StartGame from './screens/StartGame';
+import {useFont} from 'expo-font'
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
 import Game from './screens/Game';
 import Colors from './constants/colors';
+import GameOver from './screens/GameOver';
 
 
 export default function App() {
 
-  const [userNumber, setUserNumber] = useState()
+  const [userNumber, setUserNumber] = useState() 
+  const [gameISOver, setGameIsOver] = useState(true)
 
   const pickedNumber = (pikedNumber) => {
     setUserNumber(pikedNumber)
+    setGameIsOver(false)
+  }
+
+  const gameOver = () => {
+    setGameIsOver(true) 
   }
 
   let screen = <StartGame onPickedNumber={pickedNumber} />
 
   if (userNumber) {
-    screen = <Game />
+    screen = <Game userNumber={userNumber} onGameOver={gameOver} />
   }
+
+  if (gameISOver && userNumber) {
+    screen = <GameOver />
+  }
+
+
 
   return (
     <LinearGradient colors={[Colors.primary700, Colors.accent500]} style={styles.container}>
