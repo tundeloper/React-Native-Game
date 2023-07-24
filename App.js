@@ -19,7 +19,6 @@ export default function App() {
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
     'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
   })
-
   if (!fontLoaded) {
     return <AppLoading />
   }
@@ -33,6 +32,11 @@ export default function App() {
     setGameIsOver(true) 
   }
 
+  const restartGame = () => {
+    setGameIsOver(false)
+    setUserNumber('')
+  }
+
   let screen = <StartGame onPickedNumber={pickedNumber} />
 
   if (userNumber) {
@@ -40,10 +44,12 @@ export default function App() {
   }
 
   if (gameISOver && userNumber) {
-    screen = <GameOver />
+    screen = <GameOver onPress={restartGame}/>
   }
 
-
+  // if (gameISOver) {
+  //   screen = <GameOver onPress={restartGame}/>
+  // }
 
   return (
     <LinearGradient colors={[Colors.primary700, Colors.accent500]} style={styles.container}>

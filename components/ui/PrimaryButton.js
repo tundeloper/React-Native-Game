@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     buttonOuterContainer: {
         borderRadius: 28,
         margin: 4,
-        overflow: 'hidden'
+        overflow: 'hidden',
     },
     buttonInnerContainer: {
         backgroundColor: Colors.primary500,
@@ -28,9 +28,9 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: 'white',
-        textAlign: 'center'
+        textAlign: 'center',
     },
     pressed: {
-        opacity: 0.75
+        opacity: 0.75,
     }
 })
