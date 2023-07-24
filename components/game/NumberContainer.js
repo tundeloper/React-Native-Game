@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     numbeText: {
         color: Colors.accent500,
         fontSize: 36,
-        fontWeight: "bold"
+        // fontWeight: "bold"
+        fontFamily: 'open-sans-bold'
     }
 })
