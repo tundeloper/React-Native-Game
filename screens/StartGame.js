@@ -6,7 +6,7 @@ import Title from "../components/ui/Title"
 import Card from "../components/ui/Card"
 import InstructionText from "../components/ui/InstructionText"
 
-export default function StartGame({onPickedNumber}) {
+export default function StartGame({onPickedNumber,}) {
     const [enteredNumber, setEnteredNumber] = useState('')
 
     const numberInput = (enteredText) => {

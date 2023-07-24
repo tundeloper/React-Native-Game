@@ -2,15 +2,15 @@ import { View, Image, StyleSheet, Text} from "react-native"
 import Title from "../components/ui/Title"
 import Colors from "../constants/colors"
 import PrimaryButton from "../components/ui/PrimaryButton"
-export default function GameOver({ onPress }) {
+export default function GameOver({ roundsNumber, userNumber, onRestart }) {
   return (
     <View style={styles.container}>
       <Title>Game Over</Title>
       <View style={styles.imgContainer}>
         <Image source={require('../assets/images/success.png')} style={styles.img} />
       </View>
-      <Text style={styles.summaryText}>Your phone needed <Text style={styles.highlight}>X</Text> rounds to guess the number <Text style={styles.highlight}>Y</Text>.</Text>
-      <PrimaryButton onPress={onPress}>Start New Game</PrimaryButton>
+      <Text style={styles.summaryText}>Your phone needed <Text style={styles.highlight}>{roundsNumber}</Text> rounds to guess the number <Text style={styles.highlight}>{userNumber}</Text>.</Text>
+      <PrimaryButton onPress={onRestart}>Start New Game</PrimaryButton>
     </View>
   )
 }

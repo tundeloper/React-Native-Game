@@ -8,18 +8,19 @@ import Card from "../components/ui/Card";
 import { Ionicons } from '@expo/vector-icons';
 
 const generateRandomBetween = (min, max, exclude) => {
-    const rnNum = Math.floor(Math.random() * (max - min)) + min
-    if (rnNum === exclude) {
+    const roundNumber = Math.floor(Math.random() * (max - min)) + min
+    if(roundNumber)
+    if (roundNumber === exclude) {
         return generateRandomBetween(min, max, exclude)
     } else {
-        return rnNum 
+        return roundNumber 
     }
 }
 
 let min = 1;
 let max = 100
 
-export default function Game({ userNumber, onGameOver }) {
+export default function Game({ userNumber, onGameOver, onRounds }) {
     
     const initialGuess = generateRandomBetween(1, 100, userNumber)
     const [currentGuess, setCurrentGuess] = useState(initialGuess)
@@ -29,6 +30,10 @@ export default function Game({ userNumber, onGameOver }) {
             onGameOver()
         }
     }, [currentGuess, userNumber, onGameOver])
+
+    useEffect(() => {
+        min = 1; max = 100;
+    }, [])
     
     const nextGuess = (direction) => { // direction => 'lowe', 'greater'
         if ((direction === 'lower' && currentGuess < userNumber) ||
