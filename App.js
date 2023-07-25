@@ -51,7 +51,7 @@ export default function App() {
   }
 
   if (gameISOver && userNumber) {
-    screen = <GameOver userNumber={userNumber} roundsNumber={setGuessRounds} onRestart={startNewGame}/>
+    screen = <GameOver userNumber={userNumber} roundsNumber={guessRounds} onRestart={startNewGame}/>
   }
 
   return (
