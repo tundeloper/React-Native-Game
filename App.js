@@ -62,7 +62,7 @@ export default function App() {
           {screen}
         </SafeAreaView>
       </ImageBackground>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
     </LinearGradient>
   );
 } 
