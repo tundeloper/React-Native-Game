@@ -22,7 +22,7 @@ const generateRandomBetween = (min, max, exclude) => {
 let min = 1;
 let max = 100
 
-export default function Game({ userNumber, onGameOver, onRounds }) {
+export default function Game({ userNumber, onGameOver, }) {
     
     const initialGuess = generateRandomBetween(1, 100, userNumber)
     const [currentGuess, setCurrentGuess] = useState(initialGuess)
@@ -31,7 +31,7 @@ export default function Game({ userNumber, onGameOver, onRounds }) {
 
     useEffect(() => {
         if (currentGuess === userNumber) {
-            onGameOver()
+            onGameOver(guessRound.length)
         }
     }, [currentGuess, userNumber, onGameOver])
 
@@ -74,7 +74,7 @@ export default function Game({ userNumber, onGameOver, onRounds }) {
                   </View>
               </View>
           </Card>
-          <View>
+          <View style={styles.RoundList}>
               {/* {guessRound.map(guessRound => <Text key={guessRound}>{guessRound}</Text>)} */}
               <FlatList data={guessRound} renderItem={(itemData) => <GuessLoginItem roundNumber={guessRoundListLength - itemData.index} gues={itemData.item} />} keyExtractor={(item) => item} s/>
           </View>
@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         padding: 24,
+        alignItems: 'center'
     },
     title: {
         fontSize: 18,
@@ -101,6 +102,11 @@ const styles = StyleSheet.create({
         // alignItems: 'center',
     },
     buttonContainer: {
-        flex: 1
+        flex: 1,
+        // padding: 16
+    },
+    RoundList: {
+        flex: 1,
+        padding: 16,
     }
 })
