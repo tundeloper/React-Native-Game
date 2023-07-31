@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, Pressable, Image, StyleSheet, Platform } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
+import MealDetails from './MealDetails';
 
 export default function MealItem({ title, imageUrl, duration, complexity, affordability, id}) {
     const navigation = useNavigation()
@@ -17,11 +18,7 @@ export default function MealItem({ title, imageUrl, duration, complexity, afford
                   <Image source={({ uri: imageUrl })} style={styles.image} />
                   <Text style={styles.title}>{title}</Text>
               </View>
-              <View style={styles.details}>
-                  <Text style={styles.detailsItem}>{duration}m</Text>
-                  <Text style={styles.detailsItem} >{complexity.toUpperCase()}</Text>
-                  <Text style={styles.detailsItem} >{affordability.toUpperCase()}</Text>
-              </View>
+              <MealDetails complexity={complexity} affordability={affordability} duration={duration}/>
             </View>
           </Pressable>
     </View>

@@ -35,7 +35,7 @@ export default function App() {
               cardStyle: { backgroundColor: meals.color },
             }
         }}/>
-        <Stack.Screen name='MealsDetail' component={MealDetail} />
+          <Stack.Screen name='MealsDetail' component={MealDetail} options={{}}/>
       </Stack.Navigator>
     </NavigationContainer>
     <StatusBar style="light" />
