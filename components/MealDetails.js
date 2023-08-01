@@ -6,7 +6,7 @@ export default function MealDetails({duration, complexity, affordability, style,
         <Text style={[styles.detailsItem, textStyle]} >{complexity.toUpperCase()}</Text>
         <Text style={[styles.detailsItem, textStyle]} >{affordability.toUpperCase()}</Text>
     </View>
-  )
+  ) 
 }
 
 const styles = StyleSheet.create({

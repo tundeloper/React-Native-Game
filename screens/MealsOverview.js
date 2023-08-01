@@ -1,7 +1,8 @@
 import { View, FlatList, StyleSheet } from "react-native"
 // import { useRoute } from '@react-navigation/native';
-import { MEALS, CATEGORIES } from "../data/dummy-data"
-import MealItem from "../components/MealItem"
+import { MEALS } from "../data/dummy-data"
+
+import MealsList from "../components/MealList/MealsList"
 
 export default function MealsOverview({ route }) {
 
@@ -24,11 +25,7 @@ export default function MealsOverview({ route }) {
         return <MealItem {...mealItemProp}/>
     }
 
-  return (
-      <View>
-          <FlatList data={displayedMeals} keyExtractor={(item) => item.id} renderItem={renderMealItem} />
-    </View>
-  )
+  return <MealsList items={displayedMeals}/>
 }
 
 const style = StyleSheet.create({

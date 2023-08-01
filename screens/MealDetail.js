@@ -3,26 +3,46 @@ import { MEALS } from "../data/dummy-data";
 import MealDetails from "../components/MealDetails";
 import Subtitle from "../components/MealDetail/Subtitle";
 import List from "../components/MealDetail/List";
-import { useLayoutEffect } from "react";
+import { useContext, useLayoutEffect } from "react";
 import IconButton from "../components/IconButton";
+import { FavoritesContext } from "../store/context/favourite";
+import { useSelector, useDispatch } from "react-redux";
+import { addFavorite, removeFavorite } from "../store/redux/favorite";
 
 
 
 export default function MealDetail({ route, navigation }) {
+    // const favMealsCtx = useContext(FavoritesContext)
+    const dispatch = useDispatch()
+    const favMealsIds = useSelector((state) => state.favoriteMeals.ids)
     const mealId = route.params.mealId
     const selectedMeal = MEALS.find((meals) => meals.id === mealId)
+
+    // const mealIsFavorite = favMealsCtx.ids.includes(mealId)
+    const mealIsFavorite = favMealsIds.includes(mealId)
+
+
+
     const headerbuttonPressed = () => {
-        console.log('preesed')
+        console.log(mealIsFavorite)
+        if (mealIsFavorite) {
+            // favMealsCtx.removeFavorite(mealId)
+            dispatch(removeFavorite({id: mealId}))
+        } else {
+            // favMealsCtx.addFavorite(mealId)
+            dispatch(addFavorite({id: mealId}))
+        }
     }
+
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => {
-                return <IconButton />
-            }
+                return <View style={{marginRight: 10}}><IconButton icon={mealIsFavorite ? 'star' : 'star-outline'} color={'white'} onPress={headerbuttonPressed}/></View>
+            },
         })
-    }, [navigation,])
+    }, [navigation, mealIsFavorite])
   return (
-      <ScrollView style={styles.rootCOntainer}>
+      <ScrollView style={styles.rootCOntainer}>  
           <View>
           <Image source={{ uri: selectedMeal.imageUrl }} style={styles.image} />
           <Text style={styles.title}>{selectedMeal.title}</Text> 
@@ -62,6 +82,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     listContainer: {
-        width: '80% '
+        width: '80%'
     }
 })
