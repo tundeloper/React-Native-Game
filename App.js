@@ -49,10 +49,9 @@ export default function App() {
         }}
         >
           <Stack.Screen name="Drawer"
-            component={DrawerNavigator}
+            component={CategoriesScreen}
             options={{
-              title: '',
-              headerShown: false
+              title: 'All Category',
             }} />
           <Stack.Screen name="MealsOverview" component={MealsOverview} options={({ route, navigation }) => {
             const catId = route.params.categoryId

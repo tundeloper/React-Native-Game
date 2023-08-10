@@ -24,7 +24,7 @@ export default function MealDetail({ route, navigation }) {
 
 
     const headerbuttonPressed = () => {
-        console.log(mealIsFavorite)
+        // console.log(mealIsFavorite)
         if (mealIsFavorite) {
             // favMealsCtx.removeFavorite(mealId)
             dispatch(removeFavorite({id: mealId}))
